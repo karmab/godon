@@ -12,6 +12,9 @@ echo "instanciating infra"
 
 kcli create host kvm -H 127.0.0.1 local
 
+echo "generating instances credentials"
+ssh-keygen -N "" -q -f ~/.ssh/id_rsa 
+
 kcli create plan -f "${SOFT_RESIDE}/infra/pools.yml" pools 
 kcli list pool
 kcli download image -p image_pool fedora30
@@ -36,7 +39,10 @@ kcli list vm
 set -eEux
 
 echo "provisioning infra"
-# ansible to come
+ansible-playbook -i ${SOFT_RESIDE}/klist.py \
+                 -l sink_vm ${SOFT_RESIDE}/automation/setup.yml
+ansible-playbook -i ${SOFT_RESIDE}/klist.py \
+                 -l source_vm ${SOFT_RESIDE}/automation/setup.yml
 ~~~
 
 ## perform

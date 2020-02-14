@@ -1,0 +1,11 @@
+--- 
+- name: provisioning/deployment
+  hosts: all
+  gather_facts: no
+  vars:
+      assess_iface:
+        name: "ovs_eth"
+        ip_address: 10.0.1.1/25
+  tasks:
+      - name: configure assessment iface 
+        shell: ip a add {{ assess_iface.ip_address }} dev {{ assess_iface.name }}

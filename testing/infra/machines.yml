@@ -11,23 +11,25 @@ micro_fedora:
   numcpus: 1
   disks:
    - size: 5
-  nets:
-   - vm_net 
   pool: image_pool 
 
 source_vm:
   profile: micro_fedora 
+  reservehost: true
   nets:
-      - name: ovs_1
-        nic: ovs_eth 
-        ovs: true
+    - vm_net 
+    - name: ovs_1
+      nic: ovs_eth 
+      ovs: true
 
 sink_vm:
   profile: micro_fedora 
+  reservehost: true
   nets:
-      - name: ovs_2
-        nic: ovs_eth 
-        ovs: true
+    - vm_net 
+    - name: ovs_2
+      nic: ovs_eth 
+      ovs: true
 
 local:
     type: kvm

@@ -17,7 +17,9 @@ RUN dnf install -y \
         qemu-system-x86 \
         qemu-system-x86-core \
         rust \
-        cargo
+        cargo \
+        ansible \
+        openssh
 
 # make alternative
 RUN cargo install mask
